@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Shopping - Premium Dress Collection</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --primary-color: #ff6b81;
+            --secondary-color: #6c757d;
+            --dark-color: #2f3542;
+            --light-color: #f8f9fa;
+            --success-color: #2ed573;
+        }
+       
+        body {
+            font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
+            overflow-x: hidden;
+            background-color: #f8f9fa;
+        }
+       
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+        }
+       
+        .navbar {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+       
+        .hero-section {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3)), url('https://www.searchenginejournal.com/wp-content/uploads/2022/08/google-shopping-ads-6304dccb7a49e-sej.png') no-repeat center center;
+            background-size: cover;
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            position: relative;
+        }
+       
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background: linear-gradient(to bottom, transparent, var(--light-color));
+        }
+       
+        .hero-content {
+            max-width: 700px;
+            background-color: rgba(47, 53, 66, 0.7);
+            padding: 40px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+       
+        .product-card {
+            transition: all 0.4s ease;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+       
+        .product-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+       
+        .product-image-container {
+            height: 350px;
+            overflow: hidden;
+            position: relative;
+        }
+       
+        .product-image {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+       
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+       
+        .badge-custom {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 0.8rem;
+            padding: 8px 12px;
+            border-radius: 20px;
+        }
+       
+        .product-actions {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+       
+        .product-card:hover .product-actions {
+            transform: translateY(0);
+        }
+       
+        .price {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+       
+        .old-price {
+            text-decoration: line-through;
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+        }
+       
+        .filter-section {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+       
+        .cart-icon {
+            position: relative;
+        }
+       
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+       
+        .offcanvas-cart-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+       
+        .footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 60px 0 20px;
+        }
+       
+        .newsletter-input {
+            border-radius: 30px;
+            border: none;
+            padding: 15px 25px;
+        }
+       
+        .newsletter-btn {
+            border-radius: 30px;
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            padding: 10px 25px;
+        }
+       
+        .section-title {
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+       
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+        }
+       
+        .feature-box {
+            padding: 30px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+       
+        .feature-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+       
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+       
+        .testimonial-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+       
+        .testimonial-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-color);
+        }
+       
+        .rating {
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+       
+        .instagram-feed img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+       
+        .instagram-feed img:hover {
+            transform: scale(1.05);
+        }
+       
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+       
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+       
+        @media (max-width: 768px) {
+            .hero-section {
+                height: 70vh;
+            }
+           
+            .hero-content {
+                padding: 20px;
+            }
+           
+            .product-image-container {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">GorgeousGarb</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#new-arrivals">New Arrivals</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                            Collections
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#summer-collection">Summer Collection</a></li>
+                            <li><a class="dropdown-item" href="#evening-wear">Evening Wear</a></li>
+                            <li><a class="dropdown-item" href="#wedding-collection">Wedding Collection</a></li>
+                            <li><a class="dropdown-item" href="#casual-wear">Casual Wear</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <div class="input-group me-3">
+                        <input type="text" class="form-control" placeholder="Search...">
+                        <button class="btn btn-outline-light" type="button"><i class="fas fa-search"></i></button>
+                    </div>
+                    <button class="btn btn-outline-light me-3 cart-icon" type="button" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </button>
+                    <button class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#loginModal">
+                        <i class="fas fa-user"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content animate__animated animate__fadeInUp">
+                <h1 class="display-3 fw-bold">Summer Collection 2025</h1>
+                <p class="lead mb-4">Discover elegance redefined with our premium collection of dresses designed for every occasion.</p>
+                <button class="btn btn-primary btn-lg px-4 me-2">Shop Now</button>
+                <button class="btn btn-outline-light btn-lg px-4">View Collection</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-3 col-6">
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <h5>Free Shipping</h5>
+                        <p class="mb-0">On orders over ₹500</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <i class="fas fa-undo"></i>
+                        </div>
+                        <h5>Easy Returns</h5>
+                        <p class="mb-0">30 days return policy</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <h5>Secure Payment</h5>
+                        <p class="mb-0">100% secure payment</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h5>24/7 Support</h5>
+                        <p class="mb-0">Dedicated support</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Arrivals Section -->
+    <section id="new-arrivals" class="py-5">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <h2 class="section-title d-inline-block">New Arrivals</h2>
+                </div>
+            </div>
+           
+            <div class="row">
+                <!-- Product 1 -->
+                <div class="col-lg-3 col-md-4 col-6 mb-4">
+                    <div class="card product-card h-100">
+                        <div class="product-image-container">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzb1T5D5GBsK_KiY1mUCQzOI3vRLxb6u3paksbMDlf30PLrwc3R-18FDShhV7JmKYfPWw&usqp=CAU" class="product-image" alt="Elegant red evening dress with satin finish and off-shoulder design">
+                            <span class="badge bg-danger badge-custom">Sale</span>
+                            <div class="product-actions">
+                                <button class="btn btn-sm btn-primary w-100 mb-2 add-to-cart" data-id="1">Add to Cart</button>
+                                <button class="btn btn-sm btn-outline-secondary w-100">Quick View</button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Scarlet Evening Gown</h5>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="price">₹4299.99</span>
+                                    <span class="old-price ms-2">₹5799.99</span>
+                                </div>
+                                <div>
+                                    <i class="fas fa-heart text-muted"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+                <!-- Product 2 -->
+                <div class="col-lg-3 col-md-4 col-6 mb-4">
+                    <div class="card product-card h-100">
+                        <div class="product-image-container">
+                            <img src="https://d2x02matzb08hy.cloudfront.net/img/clothing/hero_image/781218657/10_b__1_.jpg" class="product-image" alt="White floral summer dress with ruffled sleeves and midi length">
+                            <span class="badge bg-success badge-custom">New</span>
+                            <div class="product-actions">
+                                <button class="btn btn-sm btn-primary w-100 mb-2 add-to-cart" data-id="2">Add to Cart</button>
+                                <button class="btn btn-sm btn-outline-secondary w-100">Quick View</button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Floral Summer Dress</h5>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="price">₹899.99</span>
+                                </div>
+                                <div>
+                                    <i class="fas fa-heart text-muted"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+                <!-- Product 3 -->
+                <div class="col-lg-3 col-md-4 col-6 mb-4">
+                    <div class="card product-card h-100">
+                        <div class="product-image-container">
+                            <img src="https://c5dab7a8392252effc30-a6e6d5f918f2df7d1cd6e0ae112dd3c0.ssl.cf2.rackcdn.com/product-hugerect-3397695-118944-1718443819-79f470514674e088bfc95feda1e01d8a.718443820_type_hugerect_nid_3397695_uid_118944_0" class="product-image" alt="Black formal dress with lace overlay and a-line silhouette">
+                            <span class="badge bg-primary badge-custom">Bestseller</span>
+                            <div class="product-actions">
+                                <button class="btn btn-sm btn-primary w-100 mb-2 add-to-cart" data-id="3">Add to Cart</button>
+                                <button class="btn btn-sm btn-outline-secondary w-100">Quick View</button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Classic Black Lace</h5>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="price">₹1499.99</span>
+                                </div>
+                                <div>
+                                    <i class="fas fa-heart text-danger"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+                <!-- Product 4 -->
+                <div class="col-lg-3 col-md-4 col-6 mb-4">
+                    <div class="card product-card h-100">
+                        <div class="product-image-container">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPyY_CsolLdt3HUtKVt67OQIInghk03W9WHA&s" class="product-image" alt="Pastel pink chiffon dress with layered skirt and wrap design">
+                            <div class="product-actions">
+                                <button class="btn btn-sm btn-primary w-100 mb-2 add-to-cart" data-id="4">Add to Cart</button>
+                                <button class="btn btn-sm btn-outline-secondary w-100">Quick View</button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Chiffon Wrap Dress</h5>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="price">₹1099.99</span>
+                                </div>
+                                <div>
+                                    <i class="fas fa-heart text-muted"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+                <!-- Product 5 -->
+                <div class="col-lg-3 col-md-4 col-6 mb-4">
+                    <div class="card product-card h-100">
+                        <div class="product-image-container">
+                            <img src="https://image.made-in-china.com/2f0j00OiJlrCBIGNvk/Custom-High-Quality-Women-Casual-Summer-Jeans-Dresses-Fashion-Evening-Party-Wash-Denim-Dress.jpg" class="product-image" alt="Casual denim dress with button front and belted waist">
+                            <span class="badge bg-danger badge-custom">Sale</span>
+                            <div class="product-actions">
+                                <button class="btn btn-sm btn-primary w-100 mb-2 add-to-cart" data-id="5">Add to Cart</button>
+                                <button class="btn btn-sm btn-outline-secondary w-100">Quick View</button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Denim Shirt Dress</h5>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="price">₹799.99</span>
+                                    <span class="old-price ms-2">₹999.99</span>
+                                </div>
+                                <div>
+                                    <i class="fas fa-heart text-muted"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+                <!-- Product 6 -->
+                <div class="col-lg-3 col-md-4 col-6 mb-4">
+                    <div class="card product-card h-100">
+                        <div class="product-image-container">
+                            <img src="https://www.dhresource.com/webp/m/0x0/f2/albu/g9/M01/0F/29/rBVaVV2zwSiAWl5WAAMTKBFSR4I572.jpg" class="product-image" alt="Elegant white wedding dress with long train and intricate beading">
+                            <div class="product-actions">
+                                <button class="btn btn-sm btn-primary w-100 mb-2 add-to-cart" data-id="6">Add to Cart</button>
+                                <button class="btn btn-sm btn-outline-secondary w-100">Quick View</button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Bridal Gown</h5>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="price">₹4999.99</span>
+                                </div>
+                                <div>
+                                    <i class="fas fa-heart text-muted"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+                <!-- Product 7 -->
+                <div class="col-lg-3 col-md-4 col-6 mb-4">
+                    <div class="card product-card h-100">
+                        <div class="product-image-container">
+                            <img src="https://www.dhresource.com/0x0/f2/albu/g2/M01/54/45/rBVaGlaLZyOAc2V3AADLL1j7ggI219.jpg/luxury-designer-evening-gowns-with-gold-silver.jpg" class="product-image" alt="Sparkling silver cocktail dress with sequin details">
+                            <span class="badge bg-success badge-custom">New</span>
+                            <div class="product-actions">
+                                <button class="btn btn-sm btn-primary w-100 mb-2 add-to-cart" data-id="7">Add to Cart</button>
+                                <button class="btn btn-sm btn-outline-secondary w-100">Quick View</button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Sparkling Cocktail Dress</h5>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="price">₹1599.99</span>
+                                </div>
+                                <div>
+                                    <i class="fas fa-heart text-danger"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+                <!-- Product 8 -->
+                <div class="col-lg-3 col-md-4 col-6 mb-4">
+                    <div class="card product-card h-100">
+                        <div class="product-image-container">
+                            <img src="https://lh3.googleusercontent.com/proxy/fOKx0OG8QdvwuhCuG3FVbIOv2fQRGcLO8CN0cDFCPbnBqTNl-IZ2MZDo5l44Cz2ws2XjPsDrDzybTXBt8jvZQWsTU8AIWssLY0-zJZca8xLiBB8PIoRnOIIiftK9Cc25lFT9jgcwDs7XlzESp8FNnpLs" class="product-image" alt="Light blue flowy maxi dress with floral print">
+                            <div class="product-actions">
+                                <button class="btn btn-sm btn-primary w-100 mb-2 add-to-cart" data-id="8">Add to Cart</button>
+                                <button class="btn btn-sm btn-outline-secondary w-100">Quick View</button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Summer Maxi Dress</h5>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="price">₹899.99</span>
+                                </div>
+                                <div>
+                                    <i class="fas fa-heart text-muted"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="text-center mt-4">
+                <button class="btn btn-outline-primary px-4">View All Products</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Summer Collection Banner -->
+    <section class="py-5 bg-primary text-white">
+        <div class="container text-center">
+            <h2 class="display-5 fw-bold mb-3">Summer Collection 2025</h2>
+            <p class="lead mb-4">Fresh styles for sunny days. Up to 40% off selected items.</p>
+            <button class="btn btn-light btn-lg px-4">Shop Now</button>
+        </div>
+    </section>
+     <!-- Categories Section -->
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <h2 class="section-title d-inline-block">Shop by Category</h2>
+                </div>
+            </div>
+           
+            <div class="row g-4">
+                <div class="col-md-3 col-6">
+                    <div class="category-card position-relative overflow-hidden rounded">
+                        <img src="https://m.media-amazon.com/images/I/41b6iiEwhJL._UY350_.jpg" class="img-fluid rounded" alt="Collection of elegant evening dresses">
+                        <div class="category-overlay d-flex align-items-center justify-content-center">
+                            <h4 class="text-white">Evening Wear</h4>
+                        </div>
+                    </div>
+                </div>
+                
+                 
+                <div class="col-md-3 col-6">
+                    <div class="category-card position-relative overflow-hidden rounded">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTt5G12uUmoxqMpdZBIn1pSRAG0GtXUZDCU4g&s" class="img-fluid rounded" alt="Collection of bridal gowns and wedding dresses">
+                        <div class="category-overlay d-flex align-items-center justify-content-center">
+                            <h4 class="text-white">Wedding Dresses</h4>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 col-6">
+                    <div class="category-card position-relative overflow-hidden rounded">
+                        <img src="https://tiimg.tistatic.com/fp/1/008/279/semi-stitched-free-size-designer-bridal-lehenga-for-wedding-occasion-891.jpg" class="img-fluid rounded" alt="Collection of bridal gowns and wedding dresses">
+                        <div class="category-overlay d-flex align-items-center justify-content-center">
+                            <h4 class="text-white">Wedding Dresses</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="category-card position-relative overflow-hidden rounded">
+                        <img src="https://cdn.shopify.com/s/files/1/0575/4843/9622/files/How_the_Kerala_white_and_gold_saree_became_a_bridal_favourite_-_Sri_Krishna_Silks_480x480.webp?v=1727433078" class="img-fluid rounded" alt="Fashion accessories to complement your outfits">
+                        <div class="category-overlay d-flex align-items-center justify-content-center">
+                            <h4 class="text-white">Accessories</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <h2 class="section-title d-inline-block">What Our Customers Say</h2>
+                </div>
+            </div>
+           
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="testimonial-card h-100">
+                        <div class="d-flex mb-3">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAa5feWGju95NLmf97imfDRjqJ1OhbK7DZEg&s" class="testimonial-img me-3" alt="Portrait of Sarah Johnson, satisfied customer">
+                            <div>
+                                <h5>Sarah Johnson</h5>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-0">"Absolutely love my new dress! The quality is outstanding and it fits perfectly. Will definitely shop here again."</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="testimonial-card h-100">
+                        <div class="d-flex mb-3">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfGkz559KfBZwWpktg4PxQBZJmJPUyDDCGxcvAntelD31fvwxoDnE-0OLh-V1LJvG4Enk&usqp=CAU" class="testimonial-img me-3" alt="Portrait of Michael Brown, happy client">
+                            <div>
+                                <h5>Michael Brown</h5>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-0">"Excellent customer service and fast delivery. The dress looked even better in person than on the website!"</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="testimonial-card h-100">
+                        <div class="d-flex mb-3">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzHMDlwRCHOHZP_tX7jRYNxV8W8MpNEog45w&s" class="testimonial-img me-3" alt="Portrait of Emily Davis, loyal customer">
+                            <div>
+                                <h5>Emily Davis</h5>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-0">"I'm very particular about quality and Glamour never disappoints. Their collection is always on trend and well-made."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instagram Feed -->
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <h2 class="section-title d-inline-block">Follow Us on Instagram</h2>
+                    <p class="mt-2">divyasd@123</p>
+                </div>
+            </div>
+           
+            <div class="row g-4">
+                <div class="col-lg-2 col-md-4 col-6">
+                    <div class="instagram-feed">
+                        <img src="https://m.media-amazon.com/images/I/71DjYq33BfL._UY1100_.jpg" class="img-fluid rounded" alt="Stylish summer dress in a café setting">
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <div class="instagram-feed">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7YFErPPkvBJAwW0hdz9BnZQrBcBW8OBTOAA&s" class="img-fluid rounded" alt="Elegant evening gown at a red carpet event">
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <div class="instagram-feed">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScBl7sXhbzhRoMS1mgkgSdlygU_kRCEYZjUw&s" class="img-fluid rounded" alt="Casual weekend wear at the park">
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <div class="instagram-feed">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsEPb8ugWKNbumzKiCwaIDeCZpl0YzqBOz-g&s" class="img-fluid rounded" alt="Wedding gown with intricate details">
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <div class="instagram-feed">
+                        <img src="https://5.imimg.com/data5/SELLER/Default/2023/5/311170900/JB/LF/YX/156746258/women-cotton-coord-set.jpg" class="img-fluid rounded" alt="Office wear with stylish accessories">
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <div class="instagram-feed">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVKzvkV7iIr8kxXm-xZFEudST43RZIJorIBg&s" class="img-fluid rounded" alt="Beach cover-up with summer hat">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="py-5 bg-primary text-white">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 text-center">
+                    <h2 class="mb-3">Join Our Mailing List</h2>
+                    <p class="mb-4">Subscribe to get updates on new arrivals, special offers and fashion tips.</p>
+                    <div class="position-relative mx-auto" style="max-width: 500px;">
+                        <input type="email" class="form-control py-3 ps-4 pe-5 newsletter-input" placeholder="Your email address">
+                        <button class="btn btn-dark position-absolute newsletter-btn">Subscribe</button>
+                    </div>
+                    <p class="mt-3 small">We respect your privacy. Unsubscribe at any time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5 bg-white">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <img src="https://cdn.pixabay.com/photo/2021/11/22/20/20/online-6817350_640.jpg" class="img-fluid rounded" alt="Team of fashion designers working in our studio">
+                </div>
+                <div class="col-md-6">
+                    <h2 class="mb-4">About GorgeousGarb Fashions</h2>
+                    <p>Founded in 2010, GorgeousGarb Fashions has been revolutionizing women's apparel with its unique designs and unparalleled quality. Our mission is to empower women through fashion that makes them feel confident and beautiful.</p>
+                    <p>We work with sustainable fabrics and ethical manufacturing practices to ensure our dresses not only look good but do good too. Our team of designers draws inspiration from global fashion trends while staying true to timeless elegance.</p>
+                    <button class="btn btn-outline-primary">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 bg-light">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <h2 class="section-title d-inline-block">Contact Us</h2>
+                </div>
+            </div>
+           
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body text-center">
+                            <div class="feature-icon mb-3">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <h5>Visit Us</h5>
+                            <p>123 Fashion Street<br>TamilNadu, Erode<br>India, 638001</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body text-center">
+                            <div class="feature-icon mb-3">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <h5>Call Us</h5>
+                            <p>+91 123 456 7890<br>Mon-Fri: 9am-6pm<br>Sat: 10am-4pm</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body text-center">
+                            <div class="feature-icon mb-3">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <h5>Email Us</h5>
+                            <p>divyakumaresan2112@gmail.com<br>24/7 Support</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="row mt-5">
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <h4 class="mb-4">Send Us a Message</h4>
+                    <form>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Your Name">
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" placeholder="Your Email">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Subject">
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control" rows="4" placeholder="Your Message"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <div class="ratio ratio-16x9">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.166182017499!2d72.82243531584693!3d19.055758887101544!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c9486c6afd4d%3A0xaa4a0901fb6fed0a!2sFashion%20Street!5e0!3m2!1sen!2sin!4v1627611499416!5m2!1sen!2sin" class="rounded" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="mb-3">GORGEOUSGARB FASHIONS</h5>
+                    <p>Premium dresses for every occasion. Redefining elegance with our curated collections.</p>
+                    <div class="social-icons">
+                        <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white me-2"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="mb-3">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white">Home</a></li>
+                        <li class="mb-2"><a href="#new-arrivals" class="text-white">New Arrivals</a></li>
+                        <li class="mb-2"><a href="#about" class="text-white">About Us</a></li>
+                        <li class="mb-2"><a href="#contact" class="text-white">Contact</a></li>
+                        <li class="mb-2"><a href="#" class="text-white">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="mb-3">Customer Service</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white">FAQ</a></li>
+                        <li class="mb-2"><a href="#" class="text-white">Shipping Policy</a></li>
+                        <li class="mb-2"><a href="#" class="text-white">Return Policy</a></li>
+                        <li class="mb-2"><a href="#" class="text-white">Privacy Policy</a></li>
+                        <li class="mb-2"><a href="#" class="text-white">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="mb-3">Payment Methods</h5>
+                    <div class="payment-methods mb-3">
+                        <img src="https://via.placeholder.com/40x25?text=VISA" alt="Visa" class="me-2 mb-2">
+                        <img src="https://via.placeholder.com/40x25?text=MC" alt="MasterCard" class="me-2 mb-2">
+                        <img src="https://via.placeholder.com/40x25?text=AMEX" alt="American Express" class="me-2 mb-2">
+                        <img src="https://via.placeholder.com/40x25?text=PP" alt="PayPal" class="me-2 mb-2">
+                        <img src="https://via.placeholder.com/40x25?text=UPI" alt="UPI" class="me-2 mb-2">
+                        <img src="https://via.placeholder.com/40x25?text=NetBank" alt="Net Banking" class="me-2 mb-2">
+                    </div>
+                    <h5 class="mb-3">Newsletter</h5>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Your email">
+                        <button class="btn btn-light" type="button">OK</button>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4 bg-secondary">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">© 2025 GorgeousGarb Fashions. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="mb-0">Designed with <i class="fas fa-heart text-danger"></i> in India</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Offcanvas -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title">Your Shopping Cart</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div id="cartItems" class="mb-3">
+                <div class="text-center text-muted py-4">
+                    <i class="fas fa-shopping-cart fa-3x mb-3"></i>
+                    <p>Your cart is empty</p>
+                </div>
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between mb-3">
+                <h6>Subtotal:</h6>
+                <h6 id="cartSubtotal">₹0.00</h6>
+            </div>
+            <button class="btn btn-primary w-100 mb-2">Proceed to Checkout</button>
+            <button class="btn btn-outline-dark w-100">Continue Shopping</button>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Login to Your Account</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="loginEmail" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="loginEmail">
+                        </div>
+                        <div class="mb-3">
+                            <label for="loginPassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="loginPassword">
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="rememberMe">
+                            <label class="form-check-label" for="rememberMe">Remember me</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Login</button>
+                    </form>
+                    <div class="text-center mt-3">
+                        <p class="mb-1">Don't have an account? <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal">Register</a></p>
+                        <a href="#">Forgot password?</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal fade" id="registerModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Create Account</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="firstName" class="form-label">First Name</label>
+                                <input type="text" class="form-control" id="firstName">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="lastName" class="form-label">Last Name</label>
+                                <input type="text" class="form-control" id="lastName">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="registerEmail" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="registerEmail">
+                        </div>
+                        <div class="mb-3">
+                            <label for="registerPassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="registerPassword">
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirmPassword" class="form-label">Confirm Password</label>
+                            <input type="password" class="form-control" id="confirmPassword">
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Register</button>
+                    </form>
+                    <div class="text-center mt-3">
+                        <p>Already have an account? <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to top button -->
+    <a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- Bootstrap JS and Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   
+    <!-- Custom JavaScript -->
+    <script>
+        $(document).ready(function() {
+            // Shopping cart functionality
+            let cart = [];
+            const cartItemsContainer = $('#cartItems');
+            const cartSubtotal = $('#cartSubtotal');
+            const cartCount = $('.cart-count');
+           
+            // Sample product data
+            const products = {
+                1: { name: 'Scarlet Evening Gown', price: 1299.99, image: 'https://placehold.co/600x800?text=Elegant+Red+Dress' },
+                2: { name: 'Floral Summer Dress', price: 899.99, image: 'https://placehold.co/600x800?text=Floral+Summer+Dress' },
+                3: { name: 'Classic Black Lace', price: 1499.99, image: 'https://placehold.co/600x800?text=Black+Lace+Dress' },
+                4: { name: 'Chiffon Wrap Dress', price: 1099.99, image: 'https://placehold.co/600x800?text=Chiffon+Wrap+Dress' },
+                5: { name: 'Denim Shirt Dress', price: 799.99, image: 'https://placehold.co/600x800?text=Denim+Shirt+Dress' },
+                6: { name: 'Bridal Gown', price: 4999.99, image: 'https://placehold.co/600x800?text=Bridal+Gown' },
+                7: { name: 'Sparkling Cocktail Dress', price: 1599.99, image: 'https://placehold.co/600x800?text=Cocktail+Dress' },
+                8: { name: 'Summer Maxi Dress', price: 899.99, image: 'https://placehold.co/600x800?text=Summer+Maxi+Dress' }
+            };
+           
+            // Add to cart functionality
+            $('.add-to-cart').on('click', function() {
+                const productId = $(this).data('id');
+                const product = products[productId];
+               
+                // Check if product already in cart
+                const existingItem = cart.find(item => item.id === productId);
+               
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({
+                        id: productId,
+                        name: product.name,
+                        price: product.price,
+                        image: product.image,
+                        quantity: 1
+                    });
+                }
+               
+                updateCart();
+               
+                // Show success message
+                const toast = $(`
+                    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+                        <div class="toast show" role="alert">
+                            <div class="toast-body bg-success text-white">
+                                Added to cart: ${product.name}
+                            </div>
+                        </div>
+                    </div>
+                `);
+                $('body').append(toast);
+               
+                setTimeout(() => {
+                    toast.remove();
+                }, 3000);
+            });
+           
+            // Update cart display
+            function updateCart() {
+                // Update cart count
+                const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+                cartCount.text(totalItems);
+               
+                // Update cart items display
+                if (cart.length === 0) {
+                    cartItemsContainer.html(`
+                        <div class="text-center text-muted py-4">
+                            <i class="fas fa-shopping-cart fa-3x mb-3"></i>
+                            <p>Your cart is empty</p>
+                        </div>
+                    `);
+                    cartSubtotal.text('₹0.00');
+                } else {
+                    let html = '';
+                    let subtotal = 0;
+                   
+                    cart.forEach(item => {
+                        const itemTotal = item.price * item.quantity;
+                        subtotal += itemTotal;
+                       
+                        html += `
+                            <div class="d-flex mb-3">
+                                <img src="${item.image}" alt="${item.name}" class="me-3" style="width: 80px; height: 80px; object-fit: cover; border-radius: 5px;">
+                                <div class="flex-grow-1">
+                                    <h6>${item.name}</h6>
+                                    <div class="d-flex justify-content-between">
+                                        <div class="d-flex align-items-center">
+                                            <button class="btn btn-sm btn-outline-secondary quantity-btn" data-id="${item.id}" data-action="decrease">-</button>
+                                            <span class="mx-2">${item.quantity}</span>
+                                            <button class="btn btn-sm btn-outline-secondary quantity-btn" data-id="${item.id}" data-action="increase">+</button>
+                                        </div>
+                                        <div>
+                                            <span>₹${itemTotal.toFixed(2)}</span>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2">
+                                        <button class="btn btn-sm btn-outline-danger remove-btn" data-id="${item.id}">Remove</button>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    });
+                   
+                    cartItemsContainer.html(html);
+                    cartSubtotal.text(`₹${subtotal.toFixed(2)}`);
+                   
+                    // Add event listeners to quantity buttons
+                    $('.quantity-btn').on('click', function() {
+                        const productId = $(this).data('id');
+                        const action = $(this).data('action');
+                        const item = cart.find(item => item.id === productId);
+                       
+                        if (action === 'increase') {
+                            item.quantity += 1;
+                        } else if (action === 'decrease') {
+                            if (item.quantity > 1) {
+                                item.quantity -= 1;
+                            } else {
+                                cart = cart.filter(item => item.id !== productId);
+                            }
+                        }
+                       
+                        updateCart();
+                    });
+                   
+                    // Add event listeners to remove buttons
+                    $('.remove-btn').on('click', function() {
+                        const productId = $(this).data('id');
+                        cart = cart.filter(item => item.id !== productId);
+                        updateCart();
+                    });
+                }
+            }
+           
+            // Back to top button
+            $(window).on('scroll', function() {
+                if ($(this).scrollTop() > 300) {
+                    $('.back-to-top').addClass('active');
+                } else {
+                    $('.back-to-top').removeClass('active');
+                }
+            });
+           
+            $('.back-to-top').on('click', function(e) {
+                e.preventDefault();
+                $('html, body').animate({scrollTop: 0}, '300');
+            });
+           
+            // Initialize tooltips
+            $('[data-bs-toggle="tooltip"]').tooltip();
+           
+            // Newsletter form
+            $('.newsletter-btn').on('click', function() {
+                const email = $('.newsletter-input').val();
+                if (email) {
+                    alert(`Thank you for subscribing with ${email}!`);
+                }
+            });
+           
+            // Smooth scrolling for anchor links
+            $('a[href*="#"]').on('click', function(e) {
+                e.preventDefault();
+               
+                $('html, body').animate(
+                    {
+                        scrollTop: $($(this).attr('href')).offset().top - 70,
+                    },
+                    500,
+                    'linear'
+                );
+            });
+           
+            // Animation on scroll
+            function animateOnScroll() {
+                $('.animate-on-scroll').each(function() {
+                    const elementPosition = $(this).offset().top;
+                    const scrollPosition = $(window).scrollTop() + $(window).height();
+                   
+                    if (scrollPosition > elementPosition) {
+                        $(this).addClass('animate__animated animate__fadeInUp');
+                    }
+                });
+            }
+           
+            $(window).on('scroll', animateOnScroll);
+            animateOnScroll();
+        });
+    </script>
+</body>
+</html>
