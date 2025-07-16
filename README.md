@@ -1,24 +1,5 @@
-# 24x7-Dresses---Online Shopping-Project
+## 24x7-Dresses---Online Shopping-Project
 
-## Sample Section
 
-## This'll be a _Helpful_ Section About the Greek Letter Θ!
-A heading containing characters not allowed in fragments, UTF-8 characters, two consecutive spaces between the first and second words, and formatting.
 
-## This heading is not unique in the file
-
-TEXT 1
-
-## This heading is not unique in the file
-
-TEXT 2
-
-# Links to the example headings above
-
-Link to the sample section: [Link Text](#sample-section).
-
-Link to the helpful section: [Link Text](#thisll-be-a-helpful-section-about-the-greek-letter-Θ).
-
-Link to the first non-unique section: [Link Text](#this-heading-is-not-unique-in-the-file).
-
-Link to the second non-unique section: [Link Text](#this-heading-is-not-unique-in-the-file-1).
+The Online Dress Shopping Platform is a web-based application designed to provide users with a seamless and enjoyable shopping experience for dresses. The platform aims to cater to a diverse audience by offering a wide range of dress styles, sizes, and price points, ensuring that every customer can find something that suits their taste and budget.
